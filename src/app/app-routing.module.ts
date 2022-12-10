@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CategoryComponent } from './category/category.component';
-import { ShowCategoryComponent } from './category/show-category/show-category.component';
-import { ProductComponent } from './product/product.component';
 
 const routes: Routes = [
-  {path:'category',component:CategoryComponent},
-  {path:'product',component:ProductComponent}
+  {path:'category',loadChildren:()=>import('./category/category.module').then(m=>m.CategoryModule)},
+  {path:'product',loadChildren:()=>import('./product/product.module').then(m=>m.ProductModule)},
+
 
 ];
 
