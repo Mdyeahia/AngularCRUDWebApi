@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 })
 export class ApiserviceService {
   readonly apiUrl = 'https://localhost:44314/api/';
+  readonly apiReportUrl = 'http://localhost:58864/api/';
+
 
   constructor(private http:HttpClient) { }
 
@@ -48,6 +50,9 @@ deleteproduct(proId: number): Observable<any> {
 getAllMenu():Observable<any[]> {
   return this.http.get<any[]>(this.apiUrl + 'menu/allmenu');
 }
+GenerateProductListReport():Observable<any> {
 
+    return this.http.get(this.apiReportUrl + 'Reports/GenerateProductListReport', {responseType: "blob"});
+}
 
 }

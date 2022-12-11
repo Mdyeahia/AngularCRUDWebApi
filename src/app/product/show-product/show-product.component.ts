@@ -15,6 +15,7 @@ ModalTitle = "";
 ActivateAddEditProduct: boolean = false;
 pro: any;
 editRowId: any;
+blob:any;
 
 ngOnInit(): void {
   this.refreshProList();
@@ -57,6 +58,7 @@ deleteClick(item: any) {
   }
 }
 
+
 closeClick() {
   this.ActivateAddEditProduct = false;
   this.refreshProList();
@@ -68,5 +70,21 @@ refreshProList() {
     console.log(data)
     this.ProductList = data;
   });
+}
+
+PrintProductList() {
+  
+  this.service.GenerateProductListReport().subscribe(data => {
+    console.log(data)
+    this.blob = new Blob([data], {type: 'application/pdf'});
+
+  var downloadURL = window.URL.createObjectURL(data);
+  var link = document.createElement('a');
+  
+  link.href = downloadURL;
+  link.download = "Product List.pdf";
+  link.click();
+  })
+
 }
 }

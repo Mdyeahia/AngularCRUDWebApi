@@ -13,6 +13,7 @@ import { AddEditProductComponent } from './product/add-edit-product/add-edit-pro
 import { ProductComponent } from './product/product.component';
 import { ShowProductComponent } from './product/show-product/show-product.component';
 import { MenuComponent } from './menu/menu.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 
 
@@ -26,6 +27,7 @@ import { MenuComponent } from './menu/menu.component';
     ProductComponent,
     ShowProductComponent,
     MenuComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,7 @@ import { MenuComponent } from './menu/menu.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxExtendedPdfViewerModule
     
   ],
   providers: [ApiserviceService],
