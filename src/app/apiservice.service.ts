@@ -50,6 +50,7 @@ deleteproduct(proId: number): Observable<any> {
 getAllMenu():Observable<any[]> {
   return this.http.get<any[]>(this.apiUrl + 'menu/allmenu');
 }
+//report
 GenerateProductListReport():Observable<any> {
 
     return this.http.get(this.apiReportUrl + 'Reports/GenerateProductListReport', {responseType: "blob"});
