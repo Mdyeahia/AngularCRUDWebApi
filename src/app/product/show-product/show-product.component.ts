@@ -75,15 +75,18 @@ refreshProList() {
 PrintProductList() {
   
   this.service.GenerateProductListReport().subscribe(data => {
-    console.log(data)
+  
     this.blob = new Blob([data], {type: 'application/pdf'});
 
   var downloadURL = window.URL.createObjectURL(data);
-  var link = document.createElement('a');
+  //var link = document.createElement('a');
+  // link.href = downloadURL;
+  //link.download = "Product List.pdf";
+  // link.click();
+  window.open(downloadURL, '_blank');
+  URL.revokeObjectURL(downloadURL);
+
   
-  link.href = downloadURL;
-  link.download = "Product List.pdf";
-  link.click();
   })
 
 }
