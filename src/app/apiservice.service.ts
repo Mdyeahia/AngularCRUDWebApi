@@ -55,5 +55,8 @@ GenerateProductListReport():Observable<any> {
 
     return this.http.get(this.apiReportUrl + 'Reports/GenerateProductListReport', {responseType: "blob"});
 }
+GenerateProduct_CategoryWiseList():Observable<any> {
 
+  return this.http.get(this.apiReportUrl + 'Reports/GenerateCategoryWiseProductListReport', {responseType: "blob"});
+}
 }

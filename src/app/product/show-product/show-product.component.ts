@@ -90,4 +90,22 @@ PrintProductList() {
   })
 
 }
+PrintProduct_CategoryWiseList() {
+  
+  this.service.GenerateProduct_CategoryWiseList().subscribe(data => {
+  
+    this.blob = new Blob([data], {type: 'application/pdf'});
+
+  var downloadURL = window.URL.createObjectURL(data);
+  //var link = document.createElement('a');
+  // link.href = downloadURL;
+  //link.download = "Product List.pdf";
+  // link.click();
+  window.open(downloadURL, '_blank');
+  URL.revokeObjectURL(downloadURL);
+
+  
+  })
+
+}
 }
