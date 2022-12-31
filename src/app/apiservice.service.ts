@@ -12,8 +12,9 @@ export class ApiserviceService {
   constructor(private http:HttpClient) { }
 
  // Category
- getCategoryList(): Observable<any[]> {
-  return this.http.get<any[]>(this.apiUrl + 'category/allcategory');
+ getCategoryList(page:number): Observable<any[]> {
+  console.log(page)
+  return this.http.get<any[]>(this.apiUrl + 'category/allcategory/{page}?pageNumber='+ page,);
 }
 addCategory(cat: any): Observable<any> {
   const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
@@ -44,7 +45,7 @@ updateproduct(pro: any): Observable<any> {
 }
 deleteproduct(proId: number): Observable<any> {
   const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-  return this.http.post<any>(this.apiUrl + 'product/Updateproduct'+ proId, httpOptions);
+  return this.http.post<any>(this.apiUrl + 'product/DeleteCategory/{Id}?id='+ proId, httpOptions);
 }
 //menu
 getAllMenu():Observable<any[]> {

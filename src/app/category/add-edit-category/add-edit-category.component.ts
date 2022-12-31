@@ -23,7 +23,7 @@ export class AddEditCategoryComponent {
     console.log(this.CatId,this.CatName)
   }
   refreshDepList() {
-    this.service.getCategoryList().subscribe(data => {
+    this.service.getCategoryList(1).subscribe(data => {
       this.CategoryList = data;
     });
   }

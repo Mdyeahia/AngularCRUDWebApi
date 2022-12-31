@@ -13,7 +13,7 @@ export class AddEditProductComponent {
   ProName = "";
   ProDescription="";
   ProCategoryId = "";
-
+  page: number = 3;
   ProductList: any = [];
   categoryList: any = [];
 
@@ -54,9 +54,17 @@ export class AddEditProductComponent {
     });
   }
   CategoryList(){
-    this.service.getCategoryList().subscribe(data => {
+    console.log(this.page)
+    this.service.getCategoryList(this.page).subscribe(data => {
+      console.log(data)
       this.categoryList = data;
     });
+  }
+
+  
+  CategoryonScroll() {  
+    this.page = this.page + 1;  
+    this.CategoryList();  
   }
 
 }

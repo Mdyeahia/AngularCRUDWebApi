@@ -7,14 +7,24 @@
                 <span class="input-group-text">Product Name</span>
                 <input type="text" class="form-control" [(ngModel)]="ProName">
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <span class="input-group-text">Category Name</span>
-                <select [(ngModel)]="ProCategoryId" class="form-control">
+                <!-- <select [(ngModel)]="ProCategoryId" class="form-control">
                     <option value="">Select Category</option>
                     <option value="{{data.Id}}" *ngFor="let data of categoryList">{{data.Name}}</option>
-                </select>
+                </select> -->
+                <ng-select [(ngModel)]="ProCategoryId" infiniteScroll 
+                [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"  
+                [scrollWindow]="false" 
+                style="height: auto; overflow-y: scroll;" 
+                (scrolled)="CategoryonScroll()" 
+                
+                >
+             
+                  <ng-option *ngFor="let data of categoryList" [value]="data.Id">{{data.Name}}</ng-option>
+               </ng-select>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <span class="input-group-text">Product Description</span>
                 <input type="text" class="form-control" [(ngModel)]="ProDescription">
             </div>

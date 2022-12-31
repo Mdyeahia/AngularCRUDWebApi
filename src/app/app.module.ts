@@ -12,10 +12,12 @@ import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { AddEditProductComponent } from './product/add-edit-product/add-edit-product.component';
 import { ProductComponent } from './product/product.component';
 import { ShowProductComponent } from './product/show-product/show-product.component';
-import { MenuComponent } from './menu/menu.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
-
-
+import { NgSelectModule } from '@ng-select/ng-select';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { MachineComponent } from './machine/machine.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -26,8 +28,7 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
     AddEditProductComponent,
     ProductComponent,
     ShowProductComponent,
-    MenuComponent,
-    
+    MachineComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +37,11 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxExtendedPdfViewerModule
+    NgxExtendedPdfViewerModule,
+    NgSelectModule,
+    ScrollingModule,
+    InfiniteScrollModule,
+    DragDropModule
     
   ],
   providers: [ApiserviceService],

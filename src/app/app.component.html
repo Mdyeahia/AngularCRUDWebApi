@@ -14,13 +14,20 @@
           <li *ngFor="let main of menuList">
             <button routerLink="{{main.NavUrl}}"*ngIf="main.ParentId==0"  class="m-1 btn btn-light btn-outline-primary" Button>{{main.Name}}</button>
             <!-- <a *ngIf="main.ParentId==0" href="#">{{main.Name}}</a> -->
+            
             <ul>
-              <li *ngFor="let menu of menuList"><a *ngIf="menu.ParentId ==main.Id" href="#">{{menu.Name}}</a></li>
+              <li *ngFor="let menu of menuList"><a *ngIf="menu.ParentId ==main.Id" href="{{menu.NavUrl}}">{{menu.Name}}</a></li>
             </ul>
           </li>
+          <li>
+            <button routerLink="/machine/dashboard" class="m-1 btn btn-light btn-outline-primary" Button>Machine</button>
+          </li>
+          
+            
         </ul>
       </nav>
     </ul>
   </nav>
+  <!-- page -->
   <router-outlet></router-outlet>
 </div>
