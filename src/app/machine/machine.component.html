@@ -4,8 +4,9 @@
 <div>
     
         
-<button  *ngFor="let machine of machineList"let i=index; type="button" class="btn btn-primary btn-circle btn-sm"
-style="margin-left: 10px;"
+<button  *ngFor="let machine of machineList"let i=index; type="button" class="btn btn btn-circle btn-sm"
+style="margin-left: 10px; color: aliceblue;"
+[ngClass]="{'green' : machine.data.length <1?true:false, 'red': machine.data.length >0?true:false}"
 [draggable]="true" 
 (dragstart)="dragStartFrom($event, machine)"  
 (drop)="onDropTo($event, machine)"       
@@ -14,17 +15,6 @@ style="margin-left: 10px;"
  (dragend)="onDragLeave($event)"
  
 >{{machine.No}}</button>
-
-<!--<td class="trailerLink" 
-     [draggable]="sch.trailerNumber!=='N/A'" 
-    (dragstart)="dragStartDriverSch($event, sch)" 
-    (drop)="onDropDriverSch($event, sch)"      
-        (dragover)="onDragOver($event)" 
-        (dragleave)="onDragLeave($event)">{{sch.trailerNumber}}</td> 
-    
-    <td  class="trailerLink" [draggable]="true" (dragstart)="dragStartTrailer($event, trl)"        
- (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" 
- (dragend)="onDragLeave($event)">{{trl.trailerNumber}}</td> -->
            
         
     

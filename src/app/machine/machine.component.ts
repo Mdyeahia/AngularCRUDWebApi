@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-machine',
@@ -8,13 +9,16 @@ import { Component } from '@angular/core';
 export class MachineComponent {
   ngOnInit(): void {
     this.Allmachine();
-
+    
   }
   machineList: any;
   sData: any;
   scheduleData: any = [];
   tData: any;
   trailerData: any = [];
+  toggle:any;
+  dragableObj :any={}
+ // dragableObj :any={}
 
   Allmachine() {
     this.machineList = [
@@ -23,12 +27,10 @@ export class MachineComponent {
         "Dia": 30,
         "GG": 24,
         "data": [{
-          "id": 1,
-          "scheduleId": "Sch001",
-          "driverName": "Anand",
-          "origin": "Mumbai",
-          "destination": "Delhi",
-          "trailerNumber": "N/A"
+          "pp": 1,
+          "Fabric Type": "Cotton",
+          "S/L": "0.2",
+          "Yarn Code": "V-231"
         }]
       },
 
@@ -36,48 +38,36 @@ export class MachineComponent {
         "No": 15,
         "Dia": 30,
         "GG": 24,
-        "data":[]
+        "data": []
+      },
+      {
+        "No": 16,
+        "Dia": 30,
+        "GG": 24,
+        "data": [{
+          "pp": 4,
+          "Fabric Type": "Siro",
+          "S/L": "0.2",
+          "Yarn Code": "V-231"
+        }]
       },
     ]
   }
 
   dragStartFrom(event: any, data: any) {
-  
-    localStorage.setItem("fromM", JSON.stringify(data.data));
+    this.dragableObj =  data;
   }
- 
+
   onDropTo(event: any, data: any) {
-    if (localStorage.getItem("fromM")) {
-      var fromdata = localStorage.getItem("fromM");
-      var todata = JSON.parse(data.data);
+  
+    if(data.data == 0){
+      data.data.push(this.dragableObj.data);
 
-      console.log(fromdata)
-      console.log(todata)
+      this.dragableObj.data=[];
 
-
-
-
-      // var sch = this.scheduleData.find(d => d.scheduleId == data.scheduleId);
-      // sch.trailerNumber = trlData.trailerNumber;
-      // var index = this.trailerData.findIndex(function (item, i) {
-      //   return item.trailerNumber === trlData.trailerNumber
-      // });
-      // if (index > -1) {
-      //   this.trailerData.splice(index, 1);
-      // }
+      console.log(this.machineList)
     }
   }
-  // onDropToTrailer(event:any) {
-  //     if (event.dataTransfer.getData("machinePro")) {
-  //         var schData = JSON.parse(event.dataTransfer.getData("machinePro"));
-  //         var sch = this.scheduleData.find(d => d.trailerNumber == schData.trailerNumber);
-  //         sch.trailerNumber = 'N/A';
-  //         this.trailerData.push(schData);
-  //         this.trailerData.sort(function(a, b) {
-  //             return a['trailerNumber'].localeCompare(b['trailerNumber']);
-  //         });
-  //     }
-  // }
   onDragOver(event: any) {
     event.stopPropagation();
     event.preventDefault();
