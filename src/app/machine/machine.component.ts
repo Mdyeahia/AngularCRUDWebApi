@@ -53,6 +53,7 @@ export class MachineComponent {
       },
     ]
   }
+  
 
   dragStartFrom(event: any, data: any) {
     this.dragableObj =  data;
