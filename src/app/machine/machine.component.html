@@ -1,11 +1,6 @@
-
-
-
-<div>
-    
-        
+<div>   
 <button  *ngFor="let machine of machineList"let i=index; type="button" class="btn btn btn-circle btn-sm"
-style="margin-left: 10px; color: aliceblue;"
+style="margin-left: 10px; color: aliceblue;" (mouseenter)="openPopup(machine.data[0])" (mouseleave)="closePopup()"
 [ngClass]="{'green' : machine.data.length <1?true:false, 'red': machine.data.length >0?true:false}"
 [draggable]="true" 
 (dragstart)="dragStartFrom($event, machine)"  
@@ -15,7 +10,25 @@ style="margin-left: 10px; color: aliceblue;"
  (dragend)="onDragLeave($event)"
  
 >{{machine.No}}</button>
-           
-        
-    
+
+</div>
+
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">PP No: {{detailsData.pp}}</h4>
+      </div>
+      <div class="modal-body">
+        <p>Fabric Type: {{detailsData.fabricType}}</p>
+        <p>S/L: {{detailsData.sl}}</p>
+        <p>Yarn Code: {{detailsData.yarnCode}}</p>
+  
+      </div>
+    </div>
+  </div>
 </div>

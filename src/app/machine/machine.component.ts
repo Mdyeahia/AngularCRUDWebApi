@@ -9,7 +9,6 @@ import { from } from 'rxjs';
 export class MachineComponent {
   ngOnInit(): void {
     this.Allmachine();
-    
   }
   machineList: any;
   sData: any;
@@ -18,7 +17,9 @@ export class MachineComponent {
   trailerData: any = [];
   toggle:any;
   dragableObj :any={}
+  displayStyle:any = "none";
  // dragableObj :any={}
+ detailsData:any={}
 
   Allmachine() {
     this.machineList = [
@@ -27,10 +28,10 @@ export class MachineComponent {
         "Dia": 30,
         "GG": 24,
         "data": [{
-          "pp": 1,
-          "Fabric Type": "Cotton",
-          "S/L": "0.2",
-          "Yarn Code": "V-231"
+          "pp": "020/21E",
+          "fabricType": "Cotton",
+          "sl": "0.2",
+          "yarnCode": "V-231"
         }]
       },
 
@@ -45,10 +46,10 @@ export class MachineComponent {
         "Dia": 30,
         "GG": 24,
         "data": [{
-          "pp": 4,
-          "Fabric Type": "Siro",
-          "S/L": "0.2",
-          "Yarn Code": "V-231"
+          "pp": "001/22C",
+          "fabricType": "Siro",
+          "sl": "0.2",
+          "yarnCode": "V-231"
         }]
       },
     ]
@@ -61,7 +62,7 @@ export class MachineComponent {
 
   onDropTo(event: any, data: any) {
   
-    if(data.data == 0){
+    if(data.data.length == 0){
       data.data.push(this.dragableObj.data);
 
       this.dragableObj.data=[];
@@ -77,6 +78,20 @@ export class MachineComponent {
     event.stopPropagation();
     event.preventDefault();
   }
-
+  
+  
+  openPopup(data:any) {
+    this.displayStyle = "block";
+    
+    
+     this.detailsData=data==undefined?{}:data
+     if(data==undefined){this.displayStyle = "none";}
+   
+    
+  }
+  closePopup() {
+    this.displayStyle = "none";
+    this.detailsData={}
+  }
 
 }
