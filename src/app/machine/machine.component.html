@@ -1,6 +1,9 @@
 <div>   
 <button  *ngFor="let machine of machineList"let i=index; type="button" class="btn btn btn-circle btn-sm"
-style="margin-left: 10px; color: aliceblue;" (mouseenter)="openPopup(machine.data[0])" (mouseleave)="closePopup()"
+style="margin-left: 10px; color: aliceblue;"
+ (mouseenter)="openPopup(machine)"
+  (mouseleave)="closePopup()"
+  (click)="ppEntry(machine)"
 [ngClass]="{'green' : machine.data.length <1?true:false, 'red': machine.data.length >0?true:false}"
 [draggable]="true" 
 (dragstart)="dragStartFrom($event, machine)"  
@@ -12,23 +15,97 @@ style="margin-left: 10px; color: aliceblue;" (mouseenter)="openPopup(machine.dat
 >{{machine.No}}</button>
 
 </div>
-
+<!-- details show section -->
 <div
   class="modal"
   tabindex="-1"
   role="dialog"
   [ngStyle]="{'display':displayStyle}">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-dialog-centered" role="document" >
     <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">PP No: {{detailsData.pp}}</h4>
+      <div class="row">
+        
+        <div class="col-md-6">
+          <div class="modal-header">
+            <h4 class="modal-title">M/C No: {{detailsData.No}}</h4>
+          </div>
+          <div class="modal-body">
+            <p>Dia/GG:  {{detailsData.Dia}}*{{detailsData.GG}}</p>
+      
+          </div>
+        </div>
+        <div class="col-md-6" *ngIf="detailsData.data?.length>0" style="border-left: 6px solid rgb(84, 84, 99);">
+          <div class="modal-header">
+            <h4 class="modal-title">PP No: {{detailsData.data[0].ppNo}}</h4>
+          </div>
+          <div class="modal-body">
+            <p>Fabric Type: {{detailsData.data[0].fabricType}}</p>
+            <p>S/L: {{detailsData.data[0].slNo}}</p>
+            <p>Yarn Count: {{detailsData.data[0].yarnCount}}</p>
+            <p>Lot No: {{detailsData.data[0].lotNo}}</p>
+            <p>Order Qty: {{detailsData.data[0].orderQty}}</p>
+      
+          </div>
+        </div>
       </div>
-      <div class="modal-body">
-        <p>Fabric Type: {{detailsData.fabricType}}</p>
-        <p>S/L: {{detailsData.sl}}</p>
-        <p>Yarn Code: {{detailsData.yarnCode}}</p>
-  
+    
+    </div>
+  </div>
+</div>
+<!-- PP entry section -->
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{'display':ppEntryStyle}">
+  <div class="modal-dialog modal-dialog-centered" role="document" >
+    <div class="modal-content">
+      <div class="row">
+        
+          <div class="modal-header">
+            <h4 class="modal-title">PP entry for production</h4>
+          </div>
+          <div class="modal-body" >
+            <form [formGroup]="frmppEntry" (ngSubmit)="SavePP(frmppEntry.value)" style="height:300px;overflow-y: scroll;">
+              <div class="form-group">
+                <label   class="col-form-label">Date:</label>
+                <input type="date" formControlName="productionDate" class="form-control" id="productionDate">
+              </div>
+              <div class="form-group">
+                <label   class="col-form-label">pp:</label>
+                <input type="text" formControlName="ppNo" class="form-control" id="ppNo">
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label">Fabric Type:</label>
+                <input type="text" formControlName="fabricType" class="form-control" id="fabricType">
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label">Yarn Count:</label>
+                <input type="text" formControlName="yarnCount" class="form-control" id="yarnCount">
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label">Lot No:</label>
+                <input type="text" formControlName="lotNo" class="form-control" id="lotNo">
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label">S/L:</label>
+                <input type="text" formControlName="slNo" class="form-control" id="slNo">
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label">Order Qty:</label>
+                <input type="number" formControlName="orderQty" min="1" class="form-control" id="orderQty">
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-secondary" (click)="closeppEntry()">Close</button>
+    
+              </div>
+            </form>
+      
+          </div>
+          
       </div>
+    
     </div>
   </div>
 </div>
