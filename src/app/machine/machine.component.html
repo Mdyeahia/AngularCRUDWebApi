@@ -22,15 +22,17 @@ style="margin-left: 10px; color: aliceblue;"
     <div class="col-md-2" *ngFor="let machine of machineList" let i=index;>
       <div class="card text-center" style="width: 10rem; ">
         <div class="card-header" (click)="openProgress(machine.No)">
-          Assigned PP
+          Production
         </div>
-        <div class="card-body" [ngClass]="{'green' : machine.data.length <1?true:false, 'red': machine.data.length >0?true:false}">
+        <div class="card-body"
+          [ngClass]="{'green' : machine.data.length <1?true:false, 'red': machine.data.length >0?true:false}">
           <h5 class="card-title">{{machine.No}}</h5>
           <p class="card-text">DIA/GG- 30*18</p>
-          <button class="btn btn-primary" (click)="ppEntry(machine)">Add Production</button>
+         
+          
         </div>
         <div class="card-footer text-muted">
-          2 days ago
+          <button class="btn btn-primary  btn-sm" (click)="ppEntry(machine)">Add Production</button>
         </div>
       </div>
 
@@ -44,7 +46,7 @@ style="margin-left: 10px; color: aliceblue;"
 
 
 
-<!-- progress bar show section -->
+<!-- production show section -->
 <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayProgress}">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -54,19 +56,35 @@ style="margin-left: 10px; color: aliceblue;"
       </div>
       <div class="modal-body">
         <div class="row">
-          <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-            <div class="example-box" *ngFor="let pro of detailsData" cdkDrag>pp---{{pro.ppNo}}
+          <div class="col-md-6">
+            <div class="example-box"[draggable]="true" (dragstart)="dragStartFrom($event, pro)" *ngFor="let pro of detailsData">
+              pp---{{pro.ppNo}}
               <button class="btn btn-warning" *ngIf="pro.status=='Active'">Stop</button>
-              <button class="btn btn-success" *ngIf="pro.status=='Added'">Start</button>
+              <button class="btn btn-success"  *ngIf="pro.status=='Added'">Start</button>
+
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="example-box" *ngFor="let machine of machineList" 
+              [ngClass]="{'green' : machine.data.length <1?true:false, 'red': machine.data.length >0?true:false}"
+              (dragover)="onDragOver($event)" 
+              (drop)="onDropTo($event, machine)">
+                machine {{machine.No}}
+
+
+              </div>
 
             </div>
           </div>
         </div>
-      
+
+
       </div>
     </div>
   </div>
 </div>
+
 
 <!-- pp details show section -->
 <!-- <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayProgress}">

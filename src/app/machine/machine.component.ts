@@ -176,12 +176,13 @@ export class MachineComponent {
 
   dragStartFrom(event: any, data: any) {
     this.dragableObj = data;
+    console.log(data)
   }
 
   onDropTo(event: any, data: any) {
-
+    console.log(data)
     if (data.data.length == 0) {
-      data.data.push(this.dragableObj.data[0]);
+      data.data.push(this.dragableObj);
 
       this.dragableObj.data = [];
 
@@ -198,7 +199,7 @@ export class MachineComponent {
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    if(this.detailsData[event.currentIndex].status !="Active")
+    if(this.detailsData[event.currentIndex].status !="Active" && this.detailsData[event.previousIndex].status !="Active")
     {
       moveItemInArray(this.detailsData, event.previousIndex, event.currentIndex);
     }
@@ -222,6 +223,7 @@ export class MachineComponent {
 
 
   }
+  
   closePopup() {
     this.displayProgress = "none";
     this.detailsData = []
