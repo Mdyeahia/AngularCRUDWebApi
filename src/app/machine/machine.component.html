@@ -25,14 +25,17 @@ style="margin-left: 10px; color: aliceblue;"
           Production
         </div>
         <div class="card-body"
-          [ngClass]="{'green' : machine.data.length <1?true:false, 'red': machine.data.length >0?true:false}">
+          [ngClass]="ppColor(machine.No)">
           <h5 class="card-title">{{machine.No}}</h5>
-          <p class="card-text">DIA/GG- 30*18</p>
+          <p class="card-text">DIA/GG- {{machine.Dia}}*{{machine.GG}}</p>
+          <p class="card-text">Type- {{machine.type}}</p>
+          <p class="card-text">Brand- {{machine.brand}}</p>
+
          
           
         </div>
         <div class="card-footer text-muted">
-          <button class="btn btn-primary  btn-sm" (click)="ppEntry(machine)">Add Production</button>
+          <button class="btn btn-primary  btn-sm"  (click)="ppEntry(machine)">Add Production</button>
         </div>
       </div>
 
@@ -49,25 +52,25 @@ style="margin-left: 10px; color: aliceblue;"
 <!-- production show section -->
 <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayProgress}">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
+    <div class="modal-content"style="width: 900px;">
       <div class="modal-header">
         <h4 class="modal-title">Production List on this machine </h4>
         <button type="button" class="btn-close" (click)="closePopup()" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="width: 900px;">
         <div class="row">
           <div class="col-md-6">
             <div class="example-box"[draggable]="true" (dragstart)="dragStartFrom($event, pro)" *ngFor="let pro of detailsData">
-              pp---{{pro.ppNo}}
-              <button class="btn btn-warning" *ngIf="pro.status=='Active'">Stop</button>
-              <button class="btn btn-success"  *ngIf="pro.status=='Added'">Start</button>
+              pp-{{pro.ppNo}} ({{pro.startTime }}) ({{pro.orderQty}}) ({{pro.assignQty}}) ({{pro.completeQty}})
+              <button class="btn btn-warning"type="button" (click)="ProductionStop(pro)" *ngIf="pro.status=='Active'">Stop</button>
+              <button class="btn btn-success" type="button" (click)="ProductionStart(pro.ppNo,pro.machineNo)"  *ngIf="pro.status=='Added'">Start</button>
 
             </div>
           </div>
           <div class="col-md-6">
             <div class="row">
               <div class="example-box" *ngFor="let machine of machineList" 
-              [ngClass]="{'green' : machine.data.length <1?true:false, 'red': machine.data.length >0?true:false}"
+              [ngClass]="ppColor(machine.No)"
               (dragover)="onDragOver($event)" 
               (drop)="onDropTo($event, machine)">
                 machine {{machine.No}}
@@ -118,11 +121,13 @@ style="margin-left: 10px; color: aliceblue;"
         <div class="modal-header">
           <h4 class="modal-title">PP entry for production</h4>
         </div>
-        <div class="modal-body">
-          <form [formGroup]="frmppEntry" (ngSubmit)="SavePP(frmppEntry.value)" style="height:300px;overflow-y: scroll;">
+        <div class="modal-body" >
+          <form [formGroup]="frmppEntry" (ngSubmit)="SavePP(frmppEntry.value)" style="height:600px;overflow-y: scroll;">
             <div class="form-group">
-              <label class="col-form-label">Date:</label>
-              <input type="date" formControlName="productionDate" class="form-control" id="productionDate">
+                <label class="col-form-label">Date:</label>
+                <input type="date" formControlName="productionDate" class="form-control" id="productionDate">
+
+                <input type="number" hidden [(ngModel)]="assignMachine" formControlName="machineNo" class="form-control" id="machineNo">
             </div>
             <div class="form-group">
               <label class="col-form-label">pp:</label>
@@ -147,6 +152,49 @@ style="margin-left: 10px; color: aliceblue;"
             <div class="form-group">
               <label for="message-text" class="col-form-label">Order Qty:</label>
               <input type="number" formControlName="orderQty" min="1" class="form-control" id="orderQty">
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Save</button>
+              <button type="button" class="btn btn-secondary" (click)="closeppEntry()">Close</button>
+
+            </div>
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!--  PP stop and completion form -->
+<div class="modal " tabindex="-1" role="dialog" [ngStyle]="{'display':ppCompletionForm}">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="row">
+
+        <div class="modal-header">
+          <h4 class="modal-title">Knitting Finish Entry</h4>
+        </div>
+        <div class="modal-body" >
+          <form #ppCompletion = "ngForm" (ngSubmit) = "ppCompleteEntry(ppCompletion.value)" style="height:380px;overflow-y: scroll;">
+          
+            <div class="form-group">
+              <label class="col-form-label">pp:</label>
+              <input type="text"  class="form-control" id="ppNo" name="ppNo" [(ngModel)]="ppNo">
+            </div>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Order Qty:</label>
+              <input type="number"  min="1" class="form-control" id="orderQty" name="orderQty" [(ngModel)]="orderQty">
+            </div>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Assign Qty:</label>
+              <input type="number"  min="1" class="form-control" id="assignQty" name="assignQty" [(ngModel)]="assignQty">
+            </div>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Complete Qty:</label>
+              <input type="number"  min="1" class="form-control" id="completeQty" name="completeQty" [(ngModel)]="completeQty">
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary">Save</button>
