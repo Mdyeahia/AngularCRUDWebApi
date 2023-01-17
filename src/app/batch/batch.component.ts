@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 declare var window: any;
+declare class ppEntry{ ppNo:any;
+  buyerName:any;
+  color:any;
+  quantity:any;}
+
 @Component({
   selector: 'app-batch',
   templateUrl: './batch.component.html',
@@ -7,16 +12,20 @@ declare var window: any;
 })
 export class BatchComponent {
   formModal: any;
-  batchMachineList: any = []
+  batchMachineList: any = [];
+  ppEntry=new ppEntry();
+
+
+  pp_dyeEntry_List:any=[]
+
+
 
   constructor() { }
   ngOnInit(): void {
     this.AllBatchMachineList();
-   
+    this.pp_dyeEntry_List.push(this.ppEntry);
 
   }
-  
-
   AllBatchMachineList() {
     this.batchMachineList = [
       {
@@ -50,9 +59,12 @@ export class BatchComponent {
       document.getElementById('myModal')
     ).show()
   }
-  saveSomeThing() {
-   
+
+  addForm() {
+    this.ppEntry=new ppEntry();
+    this.pp_dyeEntry_List.push(this.ppEntry);
+
   }
-  
+
 
 }
