@@ -1,86 +1,91 @@
 <div class="container">
-    <div class="row">
-        <div class="form-group col-md-12">
-            <button class="btn btn-danger" style="float:left;">Submit</button>
-            <h5 class="text-bold "style="float:right;padding: 10px;"><i>Dyeing Plan Entry</i> </h5>
-        </div>
-    
+  <div class="row">
+    <div class="form-group col-md-12">
+      <button class="btn btn-secondary"routerLink="/dyeing/dyeing-list" style="float:left;margin-right: 5px;">Back To List</button>
+      <button class="btn btn-danger"(click)="onsubmit()" style="float:left;">Submit</button>
+      <h5 class="text-bold " style="float:right;padding: 10px;"><i>Dyeing Plan Entry</i> </h5>
     </div>
-    
-    <div class="row" style="border: 1px solid #4CAF50;padding: 70px;">
-        <form >
-            <div class="container">
-                
-                <div class="row" >
-                    
-                    <div class="form-group col-md-6">
-                     
-                        <div class="form-group">
-                            <label>Machine</label>
-                            <input type="text" class="form-control" >
-                        </div>
-                        <div class="form-group">
-                            <label>Capacity</label>
-                            <input type="text" class="form-control" >
-                        </div>
-                    </div>
-                    
-                    <div class="form-group col-md-6">
-                        
-                        <div class="form-group">
-                            <label>Execution Date</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>Total Quantity</label>
-                            <input disabled type="number" min="1" class="form-control" >
-                        </div>
-                    </div>
-                    
-                </div>
+
+  </div>
+
+  <div class="row" style="border: 1px solid #4CAF50;padding: 70px;">
+    <form>
+      <div class="container">
+
+        <div class="row">
+
+          <div class="form-group col-md-6">
+
+            <div class="form-group">
+              <label>Machine</label>
+              <select [ngModel]="machineNo" name="machineNo" (ngModelChange)="setCapacity($event)" class="form-control">
+                <option disabled selected value="null">Select Machine</option>
+                <option *ngFor="let machine of dyeingMachineList" [value]="machine.no">{{machine.no}}
+                </option>
+              </select>
             </div>
-        </form>
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-md-2 float-right">
-            <button type="button"  class="btn btn-success" >
-                Add
-            </button>
-        </div>
-       
-        <form >
-            <div class="container">
-                
-                <div class="row" >
-                    
-                    <div class="form-group col-md-3">
-                        <label>PP</label>
-                        <input type="text" class="form-control" >
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label>Buyer</label>
-                        <input type="text" class="form-control" >
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label>Color</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label>Quantity</label>
-                        <input type="number" min="1" class="form-control" >
-                    </div>
-                    <!-- <div class="form-group col-md-2">
-                        <label>Group With</label>
-                        <input type="text" class="form-control" [disabled]="i==0" name="groupPP{{i}}" [(ngModel)]="obj.groupPP">
-                    </div> -->
-                    <div class="form-group col-md-2">
-                        <label>Action</label>
-                       <button class="form-control btn btn-danger" >Remove</button>
-                    </div>
-                </div>
+            <div class="form-group">
+              <label>Capacity</label>
+              <input disabled [(ngModel)]="capacity" name="capacity" type="text" class="form-control">
             </div>
-        </form>
+          </div>
+
+          <div class="form-group col-md-6">
+
+            <div class="form-group">
+              <label>Execution Date</label>
+              <input type="date" name="execution_date" [(ngModel)]="execution_date" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Total Quantity</label>
+              <input disabled type="number" name="totalQty" [(ngModel)]="totalQty" class="form-control">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </form>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-2 float-right">
+      <button (click)="addForm()" type="button" class="btn btn-success">
+        Add
+      </button>
     </div>
+
+    <form>
+      <div class="container">
+
+        <div class="row" *ngFor="let obj of pp_dyeEntry_List let i=index">
+          <input type="text" hidden name="mNo" [(ngModel)]="obj.mNo">
+          <div class="form-group col-md-3">
+            <label>PP</label>
+            <input type="text" class="form-control" name="ppNo{{i}}" [(ngModel)]="obj.ppNo">
+          </div>
+          <div class="form-group col-md-3">
+            <label>Buyer</label>
+            <input type="text" class="form-control" name="buyerName{{i}}" [(ngModel)]="obj.buyerName">
+          </div>
+          <div class="form-group col-md-2">
+            <label>Color</label>
+            <input type="text" class="form-control" name="color{{i}}" [(ngModel)]="obj.color">
+          </div>
+          <div class="form-group col-md-2">
+            <label>Quantity</label>
+            <input type="number" min="1" class="form-control" name="quantity{{i}}" [(ngModel)]="obj.quantity">
+          </div>
+          <!-- <div class="form-group col-md-2">
+                    <label>Group With</label>
+                    <input type="text" class="form-control" [disabled]="i==0" name="groupPP{{i}}" [(ngModel)]="obj.groupPP">
+                </div> -->
+          <div class="form-group col-md-2">
+            <label>Action</label>
+            <button class="form-control btn btn-danger" (click)="removeitem(i)" *ngIf="i!=0">Remove</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
 
 </div>

@@ -5,8 +5,7 @@ import { DyeingRoutingModule } from './dyeing-routing.module';
 
 
 @NgModule({
-  declarations: [
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     DyeingRoutingModule,

@@ -21,6 +21,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DyeingComponent } from './dyeing/dyeing.component';
 import { DyeingDashboardComponent } from './dyeing/dyeing-dashboard/dyeing-dashboard.component';
 import { DyeEntryComponent } from './dyeing/dye-entry/dye-entry.component';
+import { DyeingListComponent } from './dyeing/dyeing-list/dyeing-list.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { DyeEntryComponent } from './dyeing/dye-entry/dye-entry.component';
     MachineComponent,
     DyeingComponent,
     DyeingDashboardComponent,
-    DyeEntryComponent
+    DyeEntryComponent,
+    DyeingListComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,7 @@ import { DyeEntryComponent } from './dyeing/dye-entry/dye-entry.component';
     ScrollingModule,
     InfiniteScrollModule,
     DragDropModule
-    
+
   ],
   providers: [ApiserviceService],
   bootstrap: [AppComponent]

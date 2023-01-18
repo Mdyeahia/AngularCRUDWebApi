@@ -9,7 +9,7 @@ declare var window: any;
   styleUrls: ['./dyeing-dashboard.component.css']
 })
 export class DyeingDashboardComponent{
- 
+
   dyeingMachineList: any = [];
   pp_dyeEntry_List: any = [];
   machineNo:any
@@ -20,7 +20,7 @@ export class DyeingDashboardComponent{
   constructor() { }
   ngOnInit(): void {
     this.AllDyeingMachineList();
-    
+
 
   }
   AllDyeingMachineList() {
@@ -79,7 +79,7 @@ export class DyeingDashboardComponent{
    {
     this.dyeplan_list.push(this.pp_dyeEntry_List[i])
    }
-    
+
     console.log(this.dyeplan_list)
   }
 

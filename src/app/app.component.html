@@ -10,11 +10,11 @@
       </li> -->
       <nav>
         <ul class="nav">
-      
+
           <li *ngFor="let main of menuList">
             <button routerLink="{{main.NavUrl}}"*ngIf="main.ParentId==0"  class="m-1 btn btn-light btn-outline-primary" Button>{{main.Name}}</button>
             <!-- <a *ngIf="main.ParentId==0" href="#">{{main.Name}}</a> -->
-            
+
             <ul>
               <li *ngFor="let menu of menuList"><a *ngIf="menu.ParentId ==main.Id" href="{{menu.NavUrl}}">{{menu.Name}}</a></li>
             </ul>
@@ -26,12 +26,12 @@
             <button routerLink="/dyeing/dyeing-dashboard" class="m-1 btn btn-light btn-outline-primary" Button>Dyeing</button>
             <ul>
               <li><button routerLink="/dyeing/dye-entry" class="m-1 btn btn-light btn-outline-primary" Button>Dyeing Plan Entry</button></li>
-              <li><button routerLink="/dyeing/dyeing-dashboard" class="m-1 btn btn-light btn-outline-primary" Button>Dyeing Plan List</button></li>
-              
+              <li><button routerLink="/dyeing/dyeing-list" class="m-1 btn btn-light btn-outline-primary" Button>Dyeing Plan List</button></li>
+
             </ul>
           </li>
-          
-            
+
+
         </ul>
       </nav>
     </ul>
