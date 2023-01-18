@@ -18,7 +18,9 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { MachineComponent } from './machine/machine.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { BatchComponent } from './batch/batch.component';
+import { DyeingComponent } from './dyeing/dyeing.component';
+import { DyeingDashboardComponent } from './dyeing/dyeing-dashboard/dyeing-dashboard.component';
+import { DyeEntryComponent } from './dyeing/dye-entry/dye-entry.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { BatchComponent } from './batch/batch.component';
     ProductComponent,
     ShowProductComponent,
     MachineComponent,
-    BatchComponent,
+    DyeingComponent,
+    DyeingDashboardComponent,
+    DyeEntryComponent
   ],
   imports: [
     BrowserModule,

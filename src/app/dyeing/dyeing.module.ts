@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { BatchRoutingModule } from './batch-routing.module';
+import { DyeingRoutingModule } from './dyeing-routing.module';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
     CommonModule,
-    BatchRoutingModule
+    DyeingRoutingModule,
   ]
 })
-export class BatchModule { }
+export class DyeingModule { }

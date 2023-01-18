@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BatchComponent } from './batch.component';
+import { DyeEntryComponent } from './dye-entry.component';
 
-describe('BatchComponent', () => {
-  let component: BatchComponent;
-  let fixture: ComponentFixture<BatchComponent>;
+describe('DyeEntryComponent', () => {
+  let component: DyeEntryComponent;
+  let fixture: ComponentFixture<DyeEntryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BatchComponent ]
+      declarations: [ DyeEntryComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(BatchComponent);
+    fixture = TestBed.createComponent(DyeEntryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

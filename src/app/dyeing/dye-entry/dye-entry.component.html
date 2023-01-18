@@ -1,0 +1,86 @@
+<div class="container">
+    <div class="row">
+        <div class="form-group col-md-12">
+            <button class="btn btn-danger" style="float:left;">Submit</button>
+            <h5 class="text-bold "style="float:right;padding: 10px;"><i>Dyeing Plan Entry</i> </h5>
+        </div>
+    
+    </div>
+    
+    <div class="row" style="border: 1px solid #4CAF50;padding: 70px;">
+        <form >
+            <div class="container">
+                
+                <div class="row" >
+                    
+                    <div class="form-group col-md-6">
+                     
+                        <div class="form-group">
+                            <label>Machine</label>
+                            <input type="text" class="form-control" >
+                        </div>
+                        <div class="form-group">
+                            <label>Capacity</label>
+                            <input type="text" class="form-control" >
+                        </div>
+                    </div>
+                    
+                    <div class="form-group col-md-6">
+                        
+                        <div class="form-group">
+                            <label>Execution Date</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Total Quantity</label>
+                            <input disabled type="number" min="1" class="form-control" >
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </form>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-2 float-right">
+            <button type="button"  class="btn btn-success" >
+                Add
+            </button>
+        </div>
+       
+        <form >
+            <div class="container">
+                
+                <div class="row" >
+                    
+                    <div class="form-group col-md-3">
+                        <label>PP</label>
+                        <input type="text" class="form-control" >
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Buyer</label>
+                        <input type="text" class="form-control" >
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Color</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Quantity</label>
+                        <input type="number" min="1" class="form-control" >
+                    </div>
+                    <!-- <div class="form-group col-md-2">
+                        <label>Group With</label>
+                        <input type="text" class="form-control" [disabled]="i==0" name="groupPP{{i}}" [(ngModel)]="obj.groupPP">
+                    </div> -->
+                    <div class="form-group col-md-2">
+                        <label>Action</label>
+                       <button class="form-control btn btn-danger" >Remove</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
