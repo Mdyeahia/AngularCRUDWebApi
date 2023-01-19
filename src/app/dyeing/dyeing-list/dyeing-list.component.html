@@ -1,1 +1,30 @@
-<p>dyeing-list works!</p>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Machine No</th>
+        <th scope="col">PP No</th>
+        <th scope="col">Buyer Name</th>
+        <th scope="col">Color</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Shade App</th>
+        <th scope="col">Batch</th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let plan of dyeplanList let i=index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{plan.mNo}}</td>
+        <td>{{plan.ppNo}}</td>
+        <td>{{plan.buyerName}}</td>
+        <td>{{plan.color}}</td>
+        <td>{{plan.quantity}}</td>
+        <td><input type="checkbox"></td>
+        <td><input type="number"></td>
+
+      </tr>
+      
+    </tbody>
+  </table>
