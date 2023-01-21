@@ -1,4 +1,4 @@
-<table class="table">
+<!-- <table class="table">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -27,4 +27,13 @@
       </tr>
       
     </tbody>
-  </table>
+  </table> -->
+
+
+  <ag-grid-angular
+    style="width: 1000px; height: 550px;"
+    class="ag-theme-alpine"
+    [rowData]="rowData"
+    [defaultColDef]="defaultColDef"
+    [columnDefs]="columnDefs">
+</ag-grid-angular>
